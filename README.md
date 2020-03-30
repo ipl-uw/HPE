@@ -58,6 +58,45 @@ _<frame count>,<x of joint point 0>,<y of joint point 0>,<score of joint point 0
 The unit of x and y coordinates is in pixels. The estimation score is between 0 and 1. Higher score indicates higher confidence of estimation.
 
 The joint points are listed in order according to different standards. 
+
+There are 25 joint points in BODY25 standar as follows.
+```
+const std::map<unsigned int, std::string> POSE_BODY_25_BODY_PARTS 
+{
+	{0,  "Nose"},
+	{1,  "Neck"},
+	{2,  "RShoulder"},
+	{3,  "RElbow"},
+	{4,  "RWrist"},
+	{5,  "LShoulder"},
+	{6,  "LElbow"},
+	{7,  "LWrist"},
+	{8,  "MidHip"},
+	{9,  "RHip"},
+	{10, "RKnee"},
+	{11, "RAnkle"},
+	{12, "LHip"},
+	{13, "LKnee"},
+	{14, "LAnkle"},
+	{15, "REye"},
+	{16, "LEye"},
+	{17, "REar"},
+	{18, "LEar"},
+	{19, "LBigToe"},
+	{20, "LSmallToe"},
+	{21, "LHeel"},
+	{22, "RBigToe"},
+	{23, "RSmallToe"},
+	{24, "RHeel"},
+	{25, "Background"}
+};
+```
+
+The joint pairs are listed in order as follows.
+```
+const int PS_BODY25_PRS[] = { 1,8,   1,2,   1,5,   2,3,   3,4,   5,6,   6,7,   8,9,   9,10,  10,11, 8,12,  12,13, 13,14,  1,0,   0,15, 15,17,  0,16, 16,18,   2,17,  5,18,   14,19, 19,20, 14,21, 11,22, 22,23, 11,24 };
+```
+
 There are 18 joint points in COCO standard as follows. 
 ```
 const std::map<unsigned int, std::string> PS_COCO_BD_PTS
