@@ -1,0 +1,10 @@
+ffmpeg -r 24 -start_number 5 -i %06d_sample.jpg -vcodec libx264 -vf "pad=ceil(iw/2)*2:ceil(ih/2)*2" test.mp4
+
+ffmpeg -r 30 -start_number 5 -i %06d.jpg test.mp4
+
+
+matlab:
+plt3d_new.m
+cmbImg.m
+
+

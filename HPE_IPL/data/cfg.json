@@ -1,0 +1,151 @@
+{
+  // general information
+  "genInfo": {
+    // path of input video stream, necessary when inVdoTyp = 0, 2
+    "inVdoPth": ".\\data\\golf_1.mp4",
+    // path of folder for frame image files, necessary when inVdoTyp = 1 or inVdoTyp = 2, 3 and inPsEst2dTyp = 2
+    "frmFlrPth": ".\\data\\img1\\",
+    // index of input local camera, necessary when inVdoTyp = 3
+    "inCamIdx": 0,
+    // path of output video file, necessary when outVdoFlg = 1
+    "outVdoPth": ".\\data\\outVdo.avi",
+    // path of folder for output image files, necessary when outImgFlg = 1
+    "outImgFlrPth": ".\\data\\outImg\\",
+    // path of camera parameters, necessary when inCalTyp = 0 or outCamParamFlg = 1
+    "camParamPth": ".\\data\\camParam.txt",
+    // path of folder for json files of 2D pose estimation, necessary when inPsEst2dTyp = 1 or 2
+    "psEst2dJsonFlrPth": ".\\data\\psEst2d\\",
+    // path of txt file of 2D pose estimation, necessary when inPsEst2dTyp = 0 or outPsEst2dFlg = 1
+    "psEst2dTxtPth": ".\\data\\psEst2d.txt",
+    // path of output 3D pose estimation, necessary when outPsEst3dFlg = 1
+    "outPsEst3dPth": ".\\data\\psEst3d.txt",
+    // type of input video source: 0: video file; 1: image files; 2: IP camera; 3: local camera
+    "inVdoTyp": 0,
+    // type of input calibration: 0: txt file; 1: visual odometry; 2: optimization while 3D pose estimation (set to 2 when camMovFlg = 0)
+    "inCalTyp": 2,
+    // type of input 2D pose estimation: 0: txt file; 1: json files; 2: preprocessed by OpenPose
+    "inPsEst2dTyp": 2,
+    // the type of model of human pose: 0: COCO; 1: MPI; 2: BODY25
+    "psMdlTyp": 2,
+    // flag of output video file
+    "outVdoFlg": 0,
+    // flag of output image files
+    "outImgFlg": 1,
+    // flag of output camera parameters
+    "outCamParamFlg": 1,
+    // flag of output 2D pose estimation
+    "outPsEst2dFlg": 1,
+    // flag of output 3D pose estimation
+    "outPsEst3dFlg": 1,
+    // flag of plotting visual odometry, necessary when inCalTyp = 1
+    "pltVisOdomFlg": 0,
+    // flag of plotting 2D pose estimation
+    "pltPsEst2dFlg": 1,
+    // flag of camera movement
+    "camMovFlg": 0,
+    // flag of camera distortion
+    "camDistFlg": 0,
+    // starting frame count to process
+    "procStFrmCnt": 5,
+    // number of frames to process (-1: till the end of the video source)
+    "procFrmNum": -1,
+    // overriden frame rate, necessary when inVdoTyp > 0
+    "ovrdFrmRt": 30.0,
+    // resized video frame height (-1: original size)
+    "rszFrmHei": -1
+  },
+  // camera parameters
+  "camParam": {
+    // flag of applying RANSAC for estimating extrinsic camera matrices, necessary when inCalTyp = 1
+    "visOdomRansacFlg": 0,
+    // flag of masking by 2D pose estimation, necessary when inCalTyp = 1
+    "visOdomMsk2dPsFlg": 1,
+    // scaling factor for visual odometry, necessary when inCalTyp = 1
+    "visOdomSclFac": 1.0,
+    // minimum number of feature points in visual odometry, necessary when inCalTyp = 1
+    "visOdomMinFeatNum": 2000,
+    // threshold of minimum distance between feature points to remove duplicates in visual odometry, necessary when inCalTyp = 1
+    "visOdomMinFeatDist": 30.0,
+    // threshold for the detection of FAST feature points, necessary when inCalTyp = 1
+    "visOdomFastThld": 30,
+    // focal length(s) of the camera intrinsic matrix
+    "inCamFocLen": [ 1440 ],
+    // principal point of the camera intrinsic matrix
+    "inCamPrinPt": [240, 180 ],
+    // initial rotation vector of the camera
+    "inCamRotVecInit": [ 0, 0, 0 ],
+    // initial translation vector of the camera
+    "inCamTntVecInit": [ 0, 0, 0 ],
+    // distortion coefficients of the camera
+    "inCamDistCoeff": [ 0, 0, 0, 0 ]
+  },
+  // 2D pose estimation
+  "psEst2d": {
+    // path of folder where the pose models for OpenPose are located, necessary when inPsEst2dTyp = 2
+    "opPsMdlFlr": ".\\data\\",
+    // net resolution for OpenPose, necessary when inPsEst2dTyp = 2
+    "opNetRes": "-1x368",
+    // number of GPUs for OpenPose (-1: all GPUs), necessary when inPsEst2dTyp = 2
+    "opGpuNum": 1,
+    // GPU device start number for OpenPose, necessary when inPsEst2dTyp = 2
+    "opGpuStCnt": 0,
+    // scale gap between scales for OpenPose, necessary when inPsEst2dTyp = 2
+    "opSclGap": 1,
+    // number of scales to average for OpenPose, necessary when inPsEst2dTyp = 2
+    "opSclNum": 1,
+    // flag of tracking missing 2D joint points
+    "trkMs2dJntPtFlg": 1,
+    // the threshold for the human pose estimation score to remove false positives
+    "psEst2dScrThld": 0.10,
+    // the threshold for the distance between a joint point and its estimation, necessary when trkMs2dJntPtFlg = 1
+    "psEst2dDistThld": 30.0,
+    // the time threshold in seconds for continuous human pose estimation to recover true positives, necessary when trkMs2dJntPtFlg = 1
+    "psEst2dContTmSecThld": 0.2
+  },
+  // 3D pose estimation
+  "psEst3d": {
+    // 3D lengths between pre-defined pairs of joint points in millimeters
+    //const int PS_COCO_PRS[] = { 1,2,   1,5,   2,3,   3,4,   5,6,   6,7,   1,8,   8,9,   9,10,  1,11,  11,12, 12,13,  1,0,   0,14, 14,16,  0,15, 15,17 };
+    // coco =  {neckrshou, necklshou, rshouelb, relbwrist, lshouelb, lelbwrist, neckrhip, rhipknee, rkneeankle, necklhip, lhipknee, lkneeankle, 
+    //         necknose, nosereye, reyeear, noseleye,leyeear}
+    //"jntPr3dLen": [51.25 , 51.25 , 64.375 , 70.0 , 64.375 , 70.0 , 155.0 , 86.25 , 130.0 , 155.0 , 86.25 , 130.0 , 66.25 , 23.75 , 50.0 , 23.75 , 50.0 ], // for baby51
+    "jntPr3dLen": [ 56.4444444, 56.4444444, 84.6666667, 67.7333333, 84.6666667, 67.7333333, 180.6222222, 79.0222222, 101.6000000, 180.6222222, 79.0222222, 101.6000000, 56.4444444, 39.5111111, 62.088889, 39.5111111, 62.088889 ], //51
+    //"jntPr3dLen": [59.0, 59.0, 99.0 , 80.0 , 99.0 , 80.0, 208.0, 115.0 , 110.0, 208.0, 115.0 , 110.0,99.0,43.0,44.0,43.0,44.0  ], //20
+    //[ 192.5115657, 192.5115657, 286.7545954, 332.1287871, 286.7545954, 332.1287871, 528.5872147, 580.5973402, 452.6138776, 528.5872147, 580.5973402, 452.6138776, 190.3855115, 55.8948608, 79.0472701, 55.8948608, 79.0472701 ],
+    //[ 216.2235452, 192.5115657, 286.7545954, 332.1287871, 192.5115657, 286.7545954, 332.1287871, 437.6780667, 235.6072945, 580.5973402, 452.6138776, 235.6072945, 580.5973402, 452.6138776 ],
+    // the threshold for the ratio of allowable error in 3D length estimation
+    "jntPr3dLenErrRatThld": 0.01,
+    // the sizes of initial population for camera parameters and human pose in EDA
+    "psEst3dInitPop": [ 10000, 10000 ],
+    //"psEst3dInitPop": [ 2000, 2000 ],
+    // the sizes of selected population for camera parameters and human pose in EDA
+    "psEst3dSelPop": [ 20, 20 ],
+    // the stopping criterion for the decreasing ratio of cost for generation of camera parameters and both generation and iteration of human pose in EDA
+    "psEst3dStpCritCostRat": [ 0.01, 0.01, 0.01 ],
+    "psEst3dStpCritCostVal": [ 20.0, 1.1 ],
+    // the maximum numbers of iterations in EDA optimization of initial case and regular case
+    "psEst3dMaxIterNum": [ 10, 5 ],
+    // the maximum numbers of generations in EDA optimization of initial case of human pose and regular cases of both camera parameters and human pose
+    "psEst3dMaxGenNum": [ 30, 10, 10 ],
+    // the range of camera rotation (between 0.0 and 1.0) in EDA optimization, necessary when calMovFlg = 1
+    "psEst3dRotRng": 0.2,
+    // the range of camera translation in millimeters in EDA optimization, necessary when calMovFlg = 1
+    "psEst3dTntRng": 100.0,
+    // the range of 3D joint point movement (depth) in millimeters in EDA optimization
+    "psEst3dJnt3dMovRng": 100.0,
+    // the range of 3D joint point initialization (depth) in millimeters in EDA optimization
+    "psEst3dJnt3dInitRng": [ 500.0, 700.0 ],
+    // type of reference for temporal constancy in EDA optimization: n<0: the running average; n=0: the initial frame; n>0: the previous n frames
+    "psEst3dTmpConstRefTyp": 0,
+    // the scaling factor for temporal constancy of joint points in EDA optimization
+    "psEst3dTmpConstSclFac": 0.03,
+    // the threshold for the standard deviation of distance to the fitted plane of 3D joint points in millimeters in EDA optimization
+    "psEst3dDist2JntPtPlnThld": 100.0,
+    // the regularization parameter for the term of temporal constancy in EDA optimization
+    "psEst3dTmpConstRegParam": 1.0,
+    // the regularization parameter for the term of distance to body plane in EDA optimization
+    "psEst3dDist2BdyPlnRegParam": 1.0,
+    // the regularization parameter for the term of angle constraints in EDA optimization
+    "psEst3dAngCstrRegParam": 0.5
+  }
+}
