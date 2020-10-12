@@ -2,7 +2,7 @@
   // general information
   "genInfo": {
     // path of input video stream, necessary when inVdoTyp = 0, 2
-    "inVdoPth": ".\\data\\golf_1.mp4",
+    "inVdoPth": ".\\data\\1.mp4",
     // path of folder for frame image files, necessary when inVdoTyp = 1 or inVdoTyp = 2, 3 and inPsEst2dTyp = 2
     "frmFlrPth": ".\\data\\img1\\",
     // index of input local camera, necessary when inVdoTyp = 3
@@ -24,9 +24,9 @@
     // type of input calibration: 0: txt file; 1: visual odometry; 2: optimization while 3D pose estimation (set to 2 when camMovFlg = 0)
     "inCalTyp": 2,
     // type of input 2D pose estimation: 0: txt file; 1: json files; 2: preprocessed by OpenPose
-    "inPsEst2dTyp": 2,
-    // the type of model of human pose: 0: COCO; 1: MPI; 2: BODY25
-    "psMdlTyp": 2,
+    "inPsEst2dTyp": 0,
+    // the type of model of human pose: 0: COCO; 1: MPI; 2: BODY25; 3: INFANT
+    "psMdlTyp": 3,
     // flag of output video file
     "outVdoFlg": 0,
     // flag of output image files

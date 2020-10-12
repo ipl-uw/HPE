@@ -56,6 +56,8 @@ void CPsEst3d::initialize(CCfg oCfg)
 	// MPI standard
 	else if (1 == m_oCfg.getPsMdlTyp())
 		m_nJntPtNum = PS_MPI_JNTPT_NUM;
+	else if (3 == m_oCfg.getPsMdlTyp())
+		m_nJntPtNum = PS_INFANT_JNTPT_NUM;
 
 	// updated camera extrinsic matrix
 	m_oCamExtMatxUpd = cv::Matx34d(1.0, 0.0, 0.0, 0.0,
@@ -645,6 +647,11 @@ double CPsEst3d::calcHumPsOptCost(COptParam oOptParam, CHumPs oHumPs, cv::Matx34
 			oJntPt0 = oHumPs.getJntPt(PS_MPI_PRS[i*2]);
 			oJntPt1 = oHumPs.getJntPt(PS_MPI_PRS[(i*2)+1]);
 		}
+		else if (3 == m_oCfg.getPsMdlTyp())
+		{
+			oJntPt0 = oHumPs.getJntPt(PS_INFANT_PRS[i * 2]);
+			oJntPt1 = oHumPs.getJntPt(PS_INFANT_PRS[(i * 2) + 1]);
+		}
 
 		if ((fPsEst2dScrThld < oJntPt0.getPsEst2dScr()) && (fPsEst2dScrThld < oJntPt1.getPsEst2dScr()))
 		{
@@ -652,6 +659,8 @@ double CPsEst3d::calcHumPsOptCost(COptParam oOptParam, CHumPs oHumPs, cv::Matx34
 				fJntPr3dLen = cv::norm(voJnt3dPt[PS_COCO_PRS[i*2]] - voJnt3dPt[PS_COCO_PRS[(i*2)+1]]);
 			else if (1 == m_oCfg.getPsMdlTyp())
 				fJntPr3dLen = cv::norm(voJnt3dPt[PS_MPI_PRS[i*2]] - voJnt3dPt[PS_MPI_PRS[(i*2)+1]]);
+			else if (3 == m_oCfg.getPsMdlTyp())
+				fJntPr3dLen = cv::norm(voJnt3dPt[PS_INFANT_PRS[i * 2]] - voJnt3dPt[PS_INFANT_PRS[(i * 2) + 1]]);
 
 			// fuzzy error to relax the restriction of human pose prior
 			fSptErrTemp = std::abs(fJntPr3dLen - vfJntPr3dLen[i]) / vfJntPr3dLen[i];
