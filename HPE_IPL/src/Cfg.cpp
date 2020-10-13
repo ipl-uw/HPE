@@ -402,7 +402,7 @@ void CCfg::ldCfgFl()
 		CV_Assert(0 >= m_nRszFrmHei);
 		CV_Assert(!m_bCamDistFlg);
 	}
-	CV_Assert((0 == m_nPsMdlTyp) || (1 == m_nPsMdlTyp) || (2 == m_nPsMdlTyp));
+	CV_Assert((0 == m_nPsMdlTyp) || (1 == m_nPsMdlTyp) || (2 == m_nPsMdlTyp) || (3 == m_nPsMdlTyp));
 	CV_Assert((0 < m_fOpSclGap) || (1 >= m_fOpSclGap));
 	CV_Assert(2 == m_vnPsEst3dInitPop.size());
 	CV_Assert(2 == m_vnPsEst3dSelPop.size());

@@ -106,6 +106,7 @@
 //	{ 10, "LKnee" },
 //	{ 11, "RAnkle" },
 //	{ 12, "LAnkle" },
+//	{ 13, "Neck" },
 //};
 //! list of pairs of joint points (COCO standard)
 const int PS_COCO_PRS[] = { 1,2,   1,5,   2,3,   3,4,   5,6,   6,7,   1,8,   8,9,   9,10,  1,11,  11,12, 12,13,  1,0,   0,14, 14,16,  0,15, 15,17 };
@@ -114,7 +115,7 @@ const int PS_MPI_PRS[] = { 0,1,   1,2,   2,3,   3,4,   1,5,   5,6,   6,7,   1,14
 //! list of pairs of joint points (Body25 standard)
 const int PS_BODY25_PRS[] = { 1,8,   1,2,   1,5,   2,3,   3,4,   5,6,   6,7,   8,9,   9,10,  10,11, 8,12,  12,13, 13,14,  1,0,   0,15, 15,17,  0,16, 16,18,   2,17,  5,18,   14,19,19,20,14,21, 11,22,22,23,11,24 };
 //! list of colors for plotting joint points (COCO standard)
-const int PS_INFANT_PRS[] = { 0,1, 0,2, 1,2, 1,3, 3,5, 2,4, 4,6, 1,7, 2,8, 7,8, 7,9, 9,11, 8,10, 10,12 };
+const int PS_INFANT_PRS[] = {13, 0, 13, 1, 13, 2, 1, 2, 1, 3, 3, 5, 2, 4, 4, 6, 1, 7, 2, 8, 7, 8, 7, 9, 9, 11, 8, 10, 10, 12};
 const cv::Scalar PS_COCO_CLRS[] =
  {
 	cv::Scalar(255,   0,  85),
@@ -162,7 +163,7 @@ const cv::Scalar PS_MPI_CLRS[] =
 //! number of joint points in MPI standard (default: 15)
 #define PS_MPI_JNTPT_NUM (15)
 //! number of joint points in INFANT standard (default: 15)
-#define PS_INFANT_JNTPT_NUM (13)
+#define PS_INFANT_JNTPT_NUM (14)
 //! size of Gaussian blur (default: cv::Size(5, 5))
 #define GAUSS_BLR_SZ (cv::Size(5, 5))
 //! window size of KLT tracking (default: cv::Size(21, 21))
